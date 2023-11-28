@@ -36,11 +36,7 @@ class GameManager(Turtle):
         self.states_list = [state.lower() for state in self.data.state.tolist()]
 
     def generate_csv(self):
-        missing_states = []
-        for state in self.data.state.tolist():
-            if state not in self.correct_answers:
-                missing_states.append(state)
-
+        missing_states = [state for state in self.data.state.tolist() if state not in self.correct_answers]
         new_csv = pandas.DataFrame(missing_states)
         new_csv.to_csv("states_to_learn.csv")
         
